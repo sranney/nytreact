@@ -1,16 +1,16 @@
 {
-  "name": "client",
+  "name": "mern",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:5000/",
+  "proxy": "http://localhost:3001/",
   "dependencies": {
-    "jquery": "^3.2.1",
+    "axios": "^0.16.2",
     "materialize-css": "^0.100.2",
-    "react": "^16.2.0",
-    "react-addons-css-transition-group": "^15.6.2",
-    "react-dom": "^16.2.0",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
     "react-materialize": "^1.1.1",
-    "react-scripts": "1.0.17"
+    "react-router-dom": "^4.1.2",
+    "react-scripts": "1.0.14"
   },
   "scripts": {
     "start": "react-scripts start",

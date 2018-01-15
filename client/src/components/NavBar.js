@@ -3,7 +3,7 @@ import Title from "./Title";
 
 class NavBar extends React.Component {
 	render(){
-		return(<nav className="black" id="navbar">
+		return(<nav className="black center" id="navbar">
 			<Title/>
 			</nav>
 			);
