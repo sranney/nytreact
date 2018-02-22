@@ -1,8 +1,9 @@
 import React,{Component} from "react";
 import {Modal,Button} from "react-materialize";
 import "materialize-css";
-import API from "../utils/API";
+import API from "../utils/API";//axios methods
 
+//modal component that shows articles saved to mongodb
 class SavedArticles extends Component {
 	constructor(props){
 		super(props);
@@ -10,32 +11,33 @@ class SavedArticles extends Component {
 			savedArticles:[]
 		}
 	}
+	//actually running the loadArticles method passed from App component
 	loadArticles(){
 		this.props.loadArticles()
-			.then(results =>{
+			.then(results =>{//triggers callback function that will take returned data from mongodb and set it as state, so that the new state can be rendered
 				console.log(results);
 				const articles = results.data;
 				this.setState({savedArticles:articles});
 			});
 	}
-	componentDidMount(){
+	componentDidMount(){//when component first mounts, on page load, get articles in database
 		this.loadArticles();
 	}
-	componentDidUpdate(){
+	componentDidUpdate(){//when component has updated, whenever a new article has been saved to db and returned, get articles in database
 		this.loadArticles();
 	}	
-	deleteArticle = event => {
+	deleteArticle = event => {//when a user clicks the "X" on any article, run this function - removes the article from the saved articles in the db
 	    const parentEl = event.target.parentElement;
 	    const id = parentEl.getAttribute("id");
-	    API.Delete(id).then(results=>{
-			const filteredArticles = this.state.savedArticles.filter(article =>{
+	    API.Delete(id).then(results=>{//API is just axios.post to the endpoint sending the id of the article that will be deleted to the server which then handles the delete process with mongodb
+			const filteredArticles = this.state.savedArticles.filter(article =>{//filter out removed article
 				return article._id !==id;	
 			})
-			this.setState({savedArticles:filteredArticles})
+			this.setState({savedArticles:filteredArticles})//and setState to have savedArticles equal to the filtered results
 		});
 	}		
 		
-	render() {
+	render() {//modal that is triggered by button that shows list of savedArticles as a list
 		return (
 			<div className="left featDisc">			
 				<Modal 
@@ -52,7 +54,7 @@ class SavedArticles extends Component {
 							></Button>}
 				>
 					{				
-						this.state.savedArticles.map(article =>{
+						this.state.savedArticles.map(article =>{//render list of saved articles
 							return (
 						      	<li className="collection-item avatar modalitem" key={article._id} id={article._id}>
 						      		<i className="material-icons secondary-content red-text" onClick={this.deleteArticle}>close</i>

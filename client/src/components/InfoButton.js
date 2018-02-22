@@ -1,5 +1,6 @@
 import React,{Component} from "react";
 
+//question mark button that has a tooltip which will tell user what the purpose of the star on each result is
 class InfoButton extends Component {
 	render() {
 		return (

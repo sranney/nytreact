@@ -1,6 +1,7 @@
 import React from "react";
 import ResultsHeader from "./ResultsHeader";
 
+//component that shows search results as a list
 const SearchResults = props => {
   	return (<ul className="collection white z-depth-2">
 			<ResultsHeader
